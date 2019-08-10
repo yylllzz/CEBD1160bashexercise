@@ -1,0 +1,94 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf500
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fnil\fcharset134 PingFangSC-Regular;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh7220\viewkind0
+\deftab560
+\pard\pardeftab560\slleading20\partightenfactor0
+
+\f0\fs24 \cf0 Basic:\
+Use External Tools and Gnu Core Tools to enhance your shell skills. Compose them using pipes and filters.\
+\
+1. Unzip (using the terminal) our titanic.zip file to titanic ,\
+\
+$ unzip titanic.zip -d titanic\
+\
+2. Provide the shape/dimensions of the file train.csv ?\
+\
+$ awk -F, 'END \{printf "Number of Rows : %s\\nNumber of Columns = %s\\n", NR, NF\}' train.csv\
+\
+3. List the first 5 rows of the file. Now list the last 5.\
+\
+$ head -5 train.csv\
+\
+$ tail -5 train.csv\
+\
+4. Print this file in your screen using cat now use the less command.\
+\
+$ cat train.csv\
+\
+$ less train.csv  
+\f1 ##print from the end to the begin
+\f0 \
+\
+5. Can you print only the names of all people in the file?\
+\
+## given that all the names are in the 4th column\
+\
+$ awk -F "\\"*,\\"*" '\{print $4\}\'92 train.csv\
+\
+6. Print this file last 5 lines save the output to train_tail.csv\
+\
+$ tail -n 5 train.csv > train\\ tail.csv\
+\
+7. Print only the lines 3 to 5 of the file?\
+\
+$ awk \'91NR>2&&NR<6\'92 train.csv\
+\
+8. Can you explain the command du -a . | sort -n -r | head -n 20 and why would\
+you use it?\
+\
+The du estimates the file space usage of a particular directory or files on a file system, -a denotes counting all files in addition to directories. So the command will first calculate the space usage of all the files and directories, and then sort them in descending order. Finally, the program will only display 20 lines starting from the beginning of the output. Consequently, only the 20 largest files or directories are displayed.\
+\
+9. Split the train.csv file in multiple files with 20 lines each.\
+\
+$ split -l 20 train.csv\
+\
+Write loops to iterate over lists\
+\
+1. Download the ultratrail-du-montblanc.zip file from Slack and unzip it to\
+/Users/<myusername>/ultratrail\
+\
+$ unzip ultratrail-du-montblanc.zip -d /Users/user/Downloads/week2hw/ultratrail\
+\
+2. Write a loop that prints the name, dimension and first 2 lines for each of the .csv files.\
+\
+#! /usr/bin/env bash\
+for file in ~/ultratrail/ultratrail-du-montblanc/*.csv\
+do\
+	echo $\{head -n 1 file\}\
+	echo $\{wc -l file\}\
+	echo $\{head -n 2 file\}\
+done\
+\
+3. Write a loop that copies each of the .csv files with the prefix bkp- to a folder\
+/Users/<myusername>/ultratrail/backups .\
+\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 #! /usr/bin/env bash\
+for file in ~/ultratrail/ultratrail-du-montblanc/*.csv\
+do\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 	cp file > ~/ultratrail/backups\
+done\
+\
+Reach\
+Create scripts to automate basic processes\
+\
+1. Write a script that suggests the data formats: csv, xlsx, pdf, doc and txt. It should allow the user to pick their desired extension then create a file named selected.<extension selected> . Use the read command to read the user input!\
+\
+2. Write a script that keeps only the first N number of lines of all files in\
+'/Users//files_to_clean/*.csv'. N should be an argument passed before starting\
+the script! If other people depend on this being done daily, how can we automate\
+it's daily execution at 8:00AM?\
+}
